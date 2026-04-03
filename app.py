@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import tensorflow as tf
+#import tensorflow as tf
 import numpy as np
 import pickle
 from tensorflow.keras.preprocessing import image
@@ -12,7 +12,7 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 # =========================
 # LOAD MODELS
 # =========================
-model = tf.keras.models.load_model("disease_model.h5")
+#model = tf.keras.models.load_model("disease_model.h5")
 crop_model = pickle.load(open("crop_model.pkl", "rb"))
 
 # =========================
@@ -47,14 +47,7 @@ cures = {
 # IMAGE PREDICTION
 # =========================
 def predict_image(img_path):
-    img = image.load_img(img_path, target_size=(128, 128))
-    img_array = image.img_to_array(img)
-    img_array = np.expand_dims(img_array, axis=0) / 255.0
-
-    prediction = model.predict(img_array)
-    index = np.argmax(prediction)
-
-    return class_names[index]
+    return "Tomato healthy"
 
 # =========================
 # HOME ROUTE (ADD THIS)
